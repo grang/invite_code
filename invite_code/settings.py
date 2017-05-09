@@ -12,9 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -24,9 +22,7 @@ SECRET_KEY = 'pkg=ajbesyyw-t(cxt(4ec2v6ts6ew8$_%@fuwnit(2!qdn8@3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -37,6 +33,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'app',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -51,7 +48,6 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'invite_code.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -70,33 +66,59 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'invite_code.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+LOCAL = True
+if LOCAL:
+#    REDIS_HOST = "127.0.0.1"
+#    REDIS_PORT = 6379
+#    REDIS_PWD = 'V4hjLM81'
+
+    DB_ENGINE = 'django.db.backends.postgresql_psycopg2'
+#    DB_ENGINE = 'django.db.backends.mysql'
+    DB_NAME = "invite_code"
+    DB_USER = "root"
+    DB_PWD = "112358"
+    DB_HOST = "127.0.0.1"
+#    DB_PORT = "3306"
+else:
+#    REDIS_HOST = "127.0.0.1"
+#    REDIS_PORT = 6379
+#    REDIS_PWD = 'V4hjLM81'
+
+    DB_ENGINE = 'django.db.backends.postgresql_psycopg2'
+    DB_NAME = "invite_game"
+    DB_USER = "postgres"
+    DB_PWD = "112358"
+    DB_HOST = "127.0.0.1"
+#    DB_PORT = "3306"
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': DB_ENGINE,
+        
+        'NAME': DB_NAME,
+        'USER': DB_USER,
+        'PASSWORD': DB_PWD,
+        'HOST' : DB_HOST,
+#        'PORT' : DB_PORT,
     }
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'zh-hans'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CODE_LENGTH = 8

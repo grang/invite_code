@@ -33,7 +33,7 @@ def check_sig(request):
     params = params.dict()
 
     if not params.has_key('sig'):
-        msg = {"code":"2002", "desc":"签名参数不存在"}
+        msg = {"code":"2001", "desc":"签名参数不存在"}
         return False, msg
 
     try:
@@ -63,5 +63,5 @@ def check_sig(request):
     except Exception as e:
         print e
 
-        msg = {"code":"2001", "desc":"应用不存在"}
+        msg = {"code":"2000", "desc":"应用不存在"}
         return False, msg

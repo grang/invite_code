@@ -19,6 +19,9 @@ class App(models.Model):
     state = models.PositiveSmallIntegerField(default=0, choices=STATE, verbose_name="状态")
     create_date = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
 
+    def __str__(self):
+        return self.title
+
     class Meta:
         verbose_name = "应用"
 

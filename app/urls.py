@@ -11,4 +11,7 @@ urlpatterns = patterns('',
     
     url(r'get_echos', views.get_echos, name='get_echos'),
     url(r'write_statu', views.write_statu, name='write_statu'),
+
+    url(r'is_active', views.is_active, name='is_active'),
+    url(r'is_code_enable', views.is_code_enable, name='is_code_enable'),
 )
